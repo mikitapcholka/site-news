@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>News</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header th:insert="~{blocks/header.html :: header}"></header>
+
+<main th:each="el : ${post}" class="container">
+    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+        <div class="col-lg-6 px-0">
+            <h1 th:text="${el.title}" class="display-4 fst-italic"></h1>
+        </div>
+    </div>
+
+    <div class="row g-5">
+        <div class="col-md-8">
+            <h3 class="pb-4 mb-4 fst-italic border-bottom"></h3>
+
+            <article class="blog-post">
+                <p th:text="${el.full_text}"  class="blog-post-meta"></p>
+                <p th:text="${el.views}"  class="blog-post-meta"></p>
+                <a th:href="'/newsList/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
+                <a th:href="'/newsList/' + ${el.id} + '/remove'" class="btn btn-warning">Удалить</a>
+            </article>
+        </div>
+    </div>
+
+</main>
+
+<footer th:insert="~{blocks/footer.html :: footer}"></footer>
+
+</body>
+</html>
