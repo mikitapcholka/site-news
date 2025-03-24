@@ -20,12 +20,15 @@
         <div class="col-md-8">
             <h3 class="pb-4 mb-4 fst-italic border-bottom"></h3>
 
-            <article class="blog-post">
+            <div class="blog-post">
                 <p th:text="${el.full_text}"  class="blog-post-meta"></p>
-                <p th:text="${el.views}"  class="blog-post-meta"></p>
-                <a th:href="'/newsList/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
-                <a th:href="'/newsList/' + ${el.id} + '/remove'" class="btn btn-warning">Удалить</a>
-            </article>
+                <p class="blog-post-meta"><d>Просмотры:</d> <span th:text="${el.views}"/></p>
+                <a th:href="'/newsList/' + ${el.id} + '/edit'" class="mb-1 btn btn-warning">Редактировать</a><br>
+                <form th:action="'/newsList/' + ${el.id} + '/remove'" method="post">
+                    <button class="btn btn-warning" type="submit">Удалить</button>
+                </form>
+
+            </div>
         </div>
     </div>
 

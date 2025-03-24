@@ -37,12 +37,38 @@ public class NewsController {
             postRepository.save(post);
             return "redirect:/newsList";
         }
-    @GetMapping("/singleNews/{id}")
+    @GetMapping("/newsList/{id}")
     public String newsDetails(@PathVariable(value = "id") long id, Model model) {
         Optional<Post> post = postRepository.findById(id);
         ArrayList<Post> result = new ArrayList<>();
         post.ifPresent(result::add);
         model.addAttribute("post", result);
         return "newsDetails";
+    }
+
+    @GetMapping("/newsList/{id}/edit")
+    public String newsEdit(@PathVariable(value = "id") long id, Model model) {
+        Optional<Post> post = postRepository.findById(id);
+        ArrayList<Post> result = new ArrayList<>();
+        post.ifPresent(result::add);
+        model.addAttribute("post", result);
+        return "newsEdit";
+    }
+
+    @PostMapping("/newsList/{id}/edit")
+    public String newsUpdate(@PathVariable(value = "id") long id, @RequestParam String title,@RequestParam String anons,@RequestParam String full_text, Model model) {
+        Post post = postRepository.findById(id).orElseThrow();
+        post.setTitle(title);
+        post.setAnons(anons);
+        post.setFull_text(full_text);
+        postRepository.save(post);
+        return "redirect:/newsList/{id}";
+    }
+
+    @PostMapping("/newsList/{id}/remove")
+    public String newsDelete(@PathVariable(value = "id") long id, Model model) {
+        Post post = postRepository.findById(id).orElseThrow();
+        postRepository.delete(post);
+        return "redirect:/newsList";
     }
 }
