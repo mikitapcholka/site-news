@@ -32,8 +32,8 @@ public class NewsController {
     }
 
     @PostMapping("/newsList/add")
-        public String newNewsAdd(@RequestParam String title,@RequestParam String anons,@RequestParam String full_text, Model model) {
-            Post post = new Post(title, anons, full_text);
+        public String newNewsAdd(@RequestParam String title,@RequestParam String description,@RequestParam String full_text, Model model) {
+            Post post = new Post(title, description, full_text);
             postRepository.save(post);
             return "redirect:/newsList";
         }
@@ -56,10 +56,10 @@ public class NewsController {
     }
 
     @PostMapping("/newsList/{id}/edit")
-    public String newsUpdate(@PathVariable(value = "id") long id, @RequestParam String title,@RequestParam String anons,@RequestParam String full_text, Model model) {
+    public String newsUpdate(@PathVariable(value = "id") long id, @RequestParam String title,@RequestParam String description,@RequestParam String full_text, Model model) {
         Post post = postRepository.findById(id).orElseThrow();
         post.setTitle(title);
-        post.setAnons(anons);
+        post.setDescription(description);
         post.setFull_text(full_text);
         postRepository.save(post);
         return "redirect:/newsList/{id}";

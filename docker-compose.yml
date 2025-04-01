@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  site-news-db:
+    build: ./db
+    container_name: site-news-db
+    ports:
+      - "3306:3306"
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysql", "-u", "root", "-prootpassword", "-e", "SELECT 1" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+  site-news-app:
+    build: .
+    container_name: site-news-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      site-news-db:
+        condition: service_healthy
+    restart: always
