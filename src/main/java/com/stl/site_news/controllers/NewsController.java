@@ -26,6 +26,23 @@ public class NewsController {
         return "newsListPage";
     }
 
+    @GetMapping("/newsList/{id}")
+    public String newsDetails(@PathVariable(value = "id") long id, Model model) {
+        Optional<Post> post = postRepository.findById(id);
+        ArrayList<Post> result = new ArrayList<>();
+        post.ifPresent(result::add);
+        model.addAttribute("post", result);
+        return "newsDetails";
+    }
+
+    @GetMapping("/newsListControl")
+    public String newsPageAdmin(Model model) {
+        model.addAttribute("title", "Admin");
+        Iterable<Post> posts = postRepository.findAll();
+        model.addAttribute("posts", posts);
+        return "newsListControl";
+    }
+
     @GetMapping("/newsList/add")
     public String newsAdd(Model model) {
         return "newsAdd";
@@ -35,16 +52,8 @@ public class NewsController {
         public String newNewsAdd(@RequestParam String title,@RequestParam String description,@RequestParam String full_text, Model model) {
             Post post = new Post(title, description, full_text);
             postRepository.save(post);
-            return "redirect:/newsList";
+            return "redirect:/newsListControl";
         }
-    @GetMapping("/newsList/{id}")
-    public String newsDetails(@PathVariable(value = "id") long id, Model model) {
-        Optional<Post> post = postRepository.findById(id);
-        ArrayList<Post> result = new ArrayList<>();
-        post.ifPresent(result::add);
-        model.addAttribute("post", result);
-        return "newsDetails";
-    }
 
     @GetMapping("/newsList/{id}/edit")
     public String newsEdit(@PathVariable(value = "id") long id, Model model) {
@@ -69,6 +78,8 @@ public class NewsController {
     public String newsDelete(@PathVariable(value = "id") long id, Model model) {
         Post post = postRepository.findById(id).orElseThrow();
         postRepository.delete(post);
-        return "redirect:/newsList";
+        return "redirect:/newsListControl";
     }
+
+
 }

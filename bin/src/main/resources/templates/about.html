@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header th:insert="blocks/header.html :: header"></header>
+<div class="container mt-5">
+    <h1 th:text="${title}"/>
+</div>
+
+<div class="p-4">
+    <h4 class="fst-italic">Elsewhere</h4>
+    <ol class="list-unstyled">
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Facebook</a></li>
+    </ol>
+</div>
+
+<footer th:insert="~{blocks/footer.html :: footer}"></footer>
+
+</body>
+</html>

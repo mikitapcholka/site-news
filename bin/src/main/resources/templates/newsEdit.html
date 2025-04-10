@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование новости</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header th:insert="~{blocks/header.html :: header}"></header>
+
+<main class="container mb-5" >
+    <div class="p-1 p-md-3 mb-1 rounded text-body-emphasis bg-body-secondary">
+        <div class="col-lg-20 px-0">
+            <h1 class="display-4 fst-italic">Редактирование новостной статьи</h1>
+        </div>
+    </div>
+
+    <div class="row g-5">
+        <div class="col-md-8">
+            <h3 class="pb-4 mb-4 fst-italic border-bottom"></h3>
+            <div th:each="el : ${post}">
+            <form method="post">
+                <input type="text" th:value="${el.title}" name="title" placeholder="Введите название новости" class="form-control"><br>
+                <input type="text" th:value="${el.description}" name="description" placeholder="Введите анонс новости" class="form-control"><br>
+                <textarea name="full_text" placeholder="Введите текст новости" class="form-control" th:text="${el.full_text}" /><br>
+                <button type="submit" class="btn btn-success">Обновить новость</button><br>
+            </form>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:insert="~{blocks/footer.html :: footer}"></footer>
+
+</body>
+</html>

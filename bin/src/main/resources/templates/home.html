@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <title>Main page</title>
+</head>
+<body>
+<header th:insert="~{blocks/header.html :: header}"></header>
+
+    <main class="container">
+        <div class="p-1 p-md-3 mb-1 rounded text-body-emphasis bg-body-secondary">
+            <div class="col-lg-20 px-0">
+                <h1 class="display-4 fst-italic">Читайте самые интересные новости</h1>
+                <p class="lead my-3">Самые самые</p>
+                <p class="lead mb-0"><a href="/newsList" class="text-body-emphasis fw-bold">Читать</a></p>
+            </div>
+            </a>
+        </div>
+
+            <div class="col-md-4">
+                <div class="position-sticky" style="top: 2rem;">
+                    <div class="p-4 mb-3 bg-body-tertiary rounded">
+                        <h4 class="fst-italic">Самые свежие новости у нас</h4>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer th:insert="~{blocks/footer.html :: footer}"></footer>
+</body>
+</html>

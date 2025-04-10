@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS `site-news-db`;
 -- Switch to the "site-news-db" database
 USE `site-news-db`;
 
--- Create the "post" table
+-- Create the "posts" table
 CREATE TABLE IF NOT EXISTS `post` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,    -- Unique identifier for each post
     `title` VARCHAR(255) NOT NULL,           -- Title of the post
@@ -13,22 +13,6 @@ CREATE TABLE IF NOT EXISTS `post` (
     `views` INT DEFAULT 0                    -- Number of views, initialized to 0
 );
 
--- Create the "users" table
-CREATE TABLE IF NOT EXISTS `users` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,    -- Unique identifier for each user
-    `username` VARCHAR(64) NOT NULL UNIQUE,           -- Username
-    `password` VARCHAR(128) NOT NULL
-);
-
-
 INSERT INTO `post` (`title`, `description`, `full_text`, `views`) VALUES
     ('Sample Post 1', 'This is a sample announcement for post 1.', 'This is the full text for post 1.', 0),
     ('Sample Post 2', 'This is a sample announcement for post 2.', 'This is the full text for post 2.', 0);
-
-
-INSERT INTO `users` (`username`, `password`) VALUES
-    ('user1', '1'),
-    ('user2', '2');
-
-
-

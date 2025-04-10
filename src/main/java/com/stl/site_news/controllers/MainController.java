@@ -1,5 +1,6 @@
 package com.stl.site_news.controllers;
 
+import com.stl.site_news.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,12 @@ public class MainController {
     public String about(Model model) {
         model.addAttribute("title", "About us");
         return "about";
+    }
+
+    @GetMapping("/control")
+    public String control(Model model) {
+        model.addAttribute("title", "Control");
+        return "control";
     }
 
 }

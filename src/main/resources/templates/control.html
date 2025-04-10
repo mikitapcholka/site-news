@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <title>Main page</title>
+</head>
+<body>
+<header th:insert="~{blocks/header.html :: header}"></header>
+
+<main class="container">
+    <div class="container">
+            <div class="nav-scroller py-1 mb-3 border-bottom">
+                <nav class="nav nav-underline justify-content-between">
+                    <a class="nav-item nav-link link-body-emphasis" href="/newsListControl">Управление новостями</a>
+                    <a class="nav-item nav-link link-body-emphasis" href="/registration">Добавление админов</a>
+                </nav>
+            </div>
+    </div>
+</main>
+
+<footer th:insert="~{blocks/footer.html :: footer}"></footer>
+</body>
+</html>
